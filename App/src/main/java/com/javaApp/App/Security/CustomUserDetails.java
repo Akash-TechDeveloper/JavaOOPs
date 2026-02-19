@@ -1,6 +1,6 @@
 package com.javaApp.App.Security;
 
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,12 +27,12 @@ public class CustomUserDetails implements UserDetails {
     }
 
     @Override
-    public @Nullable String getPassword() {
+    public @NonNull String getPassword() {
         return password;
     }
 
     @Override
-    public  String  getUsername() {
+    public @NonNull String getUsername() {
         return email;
     }
 

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/auth")
@@ -31,7 +32,7 @@ public class AuthController {
         );
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(authRequest.getEmail());
 
-            String role = userDetails.getAuthorities().iterator().next().getAuthority()
+            String role = Objects.requireNonNull(userDetails.getAuthorities().iterator().next().getAuthority())
                     .replace("ROLE_", "");;
 
             String token = jwtUtil.generate_Key(userDetails.getUsername(),role);
